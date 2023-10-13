@@ -2,10 +2,9 @@ name: Docker - Build and push latest
 
 on:
   push:
-    branches: [ "**" ]
-    tags-ignore: [ "release-*" ]
+    branches: ['**']
+    tags-ignore: ['release-*']
   workflow_dispatch:
-
 
 env:
   REGISTRY: ghcr.io
@@ -36,8 +35,6 @@ jobs:
         env:
           APP_IMAGE_URI: ${{ env.APP_IMAGE }}:build-${{ github.run_number }}
         run: |
-          chmod +x build.sh
-          ./build.sh
           echo "image-uri=$APP_IMAGE_URI" >> $GITHUB_OUTPUT
           echo "Built Successfully"
         shell: bash

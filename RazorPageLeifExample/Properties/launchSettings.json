@@ -13,7 +13,7 @@
       "hotReloadProfile": "aspnetcore",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "dev/index",
+      "launchUrl": "home",
       "applicationUrl": "http://localhost:3001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
