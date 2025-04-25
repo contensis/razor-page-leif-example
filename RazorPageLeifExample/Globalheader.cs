@@ -24,7 +24,7 @@ public class AddHeaderAttribute : ResultFilterAttribute
 
     public override void OnResultExecuting(ResultExecutingContext context)
     {
-        context.HttpContext.Response.Headers.Add(_name, _values);
+        context.HttpContext.Response.Headers.Append(_name, _values);
         base.OnResultExecuting(context);
     }
 }

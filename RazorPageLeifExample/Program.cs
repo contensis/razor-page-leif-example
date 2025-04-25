@@ -24,10 +24,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); NO SUPPORT FOR .NET 9,0 
 app.UseStaticFiles();
 app.UseRouting();
-app.UseHttpLogging();
+// app.UseHttpLogging(); NO SUPPORT FOR .NET 9,0 
 app.UseStatusCodePagesWithReExecute("/Error");
 app.MapRazorPages();
 

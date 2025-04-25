@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/RazorPageLeifExample/bin/Debug/net7.0/RazorPageLeifExample.dll",
+            "program": "${workspaceFolder}/RazorPageLeifExample/bin/Debug/net9.0/RazorPageLeifExample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/RazorPageLeifExample",
             "stopAtEntry": false,
