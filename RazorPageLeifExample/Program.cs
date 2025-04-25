@@ -9,7 +9,8 @@ builder.Services
         (options) =>
         {
             // Override root to always render blog post
-            options.Conventions.AddPageRoute("/Blog/BlogPost", "/");
+            options.Conventions.AddPageRoute("/Home/Index", "/");
+            options.Conventions.AddPageRoute("/Blog/BlogPost", "/blogs/{*slug}");
             options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
         }
     );

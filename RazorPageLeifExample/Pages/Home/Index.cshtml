@@ -11,7 +11,7 @@
                     <img class="blog-card__img" src="@(blogItem.ThumbnailImageUrl)" alt="" />
                 }
                 <div class="related-blog__content">
-                        <h2 class="blog-card__title desktop"><a class="blog-card__link" href="/?entryId=@(blogItem.Sys.Id)">@blogItem.Title</a></h2>
+                        <h2 class="blog-card__title desktop"><a class="blog-card__link" href="/blog/@(blogItem.Sys.Slug)?entryId=@(blogItem.Sys.Id)">@blogItem.Title</a></h2>
                 <!-- Truncate text as it can sometimes be too long -->
                 @if (blogItem.LeadParagraph != null) {
                     <p class="blog-card__text">@blogItem.LeadParagraph.Substring(0, Math.Min(blogItem.LeadParagraph.Length, 124))&hellip;</p>
