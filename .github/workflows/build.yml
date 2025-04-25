@@ -12,7 +12,7 @@ env:
 
 jobs:
   build-latest:
-    name: Build Block
+    name: Build Code and Push to Registry
     runs-on: ubuntu-latest
 
     steps:
