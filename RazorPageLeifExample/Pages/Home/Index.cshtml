@@ -1,28 +1,58 @@
 @page
-@model IndexModel
+@model RazorPageLeifExample.Pages.IndexModel
 
 <h1 class="blogs__title">Our blogs</h1>
-@if ((Model.BlogsPayload != null) && (Model.BlogsPayload.TotalCount > 0)) {
+
+@if (Model.BlogNodes != null && Model.BlogNodes.Any())
+{
     <ul class="blogs">
-        @foreach (var blogItem in Model.BlogsPayload.Items) {
-            <li class="blog-card">
-                <h2 class="blog-card__title mobile"><a class="blog-card__link" href="@blogItem.Sys.Uri">@blogItem.Title</a></h2>
-                @if (blogItem.ThumbnailImage != null) {
-                    <img class="blog-card__img" src="@(blogItem.ThumbnailImageUrl)" alt="" />
-                }
-                <div class="related-blog__content">
-                        <h2 class="blog-card__title desktop"><a class="blog-card__link" href="/blog/@(blogItem.Sys.Slug)?entryId=@(blogItem.Sys.Id)">@blogItem.Title</a></h2>
-                <!-- Truncate text as it can sometimes be too long -->
-                @if (blogItem.LeadParagraph != null) {
-                    <p class="blog-card__text">@blogItem.LeadParagraph.Substring(0, Math.Min(blogItem.LeadParagraph.Length, 124))&hellip;</p>
-                }
-                @if (blogItem.Category != null) {
-                    <span class="category">@blogItem.Category.Name</span>
-                }
-                </div>
-            </li>
+        @foreach (var BlogNode in Model.BlogNodes)
+        {
+            @* <!-- Fetch the associated entry for the node --> *@
+            var BlogEntry = BlogNode.Entry<RazorPageLeifExample.Models.BlogPost>();
+
+            @if (BlogEntry != null)
+            {
+                <li class="blog-card">
+                    @* <!-- Create a link for each blog post --> *@
+                    <h2 class="blog-card__title mobile">
+                        <a class="blog-card__link" href="@(BlogNode.Path)">
+                            @BlogEntry.Title
+                        </a>
+                    </h2>
+
+                    @* <!-- Check for a thumbnail image and render it --> *@
+                    @if (BlogEntry.ThumbnailImage != null)
+                    {
+                        <img class="blog-card__img" src="@(BlogEntry.ThumbnailImageUrl)" alt="" />
+                    }
+
+                    <div class="related-blog__content">
+                        @* <!-- Render title on desktop --> *@
+                        <h2 class="blog-card__title desktop">
+                            <a class="blog-card__link" href="@(BlogNode.Path)">
+                                @BlogEntry.Title
+                            </a>
+                        </h2>
+
+                        @* <!-- Truncate the lead paragraph --> *@
+                        @if (BlogEntry.LeadParagraph != null)
+                        {
+                            <p class="blog-card__text">@BlogEntry.LeadParagraph.Substring(0, Math.Min(BlogEntry.LeadParagraph.Length, 124))&hellip;</p>
+                        }
+
+                        @* <!-- Render the category --> *@
+                        @if (BlogEntry.Category != null)
+                        {
+                            <span class="category">@BlogEntry.Category.Name</span>
+                        }
+                    </div>
+                </li>
+            }
         }
     </ul>
-} else {
+}
+else
+{
     <p>No blogs found</p>
 }

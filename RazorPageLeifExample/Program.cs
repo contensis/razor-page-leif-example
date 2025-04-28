@@ -2,18 +2,17 @@ using Zengenti.Contensis.Delivery;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services
     .AddRazorPages()
-    .AddRazorPagesOptions(
-        (options) =>
-        {
-            // Override root to always render blog post
-            options.Conventions.AddPageRoute("/Home/Index", "/");
-            options.Conventions.AddPageRoute("/Blog/BlogPost", "/blogs/{*slug}");
-            options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
-        }
-    );
+    .AddRazorPagesOptions(options =>
+    {
+        // Override root to always render blog post at '/'
+        options.Conventions.AddPageRoute("/Home/Index", "/");
+        options.Conventions.AddPageRoute("/Blog/BlogPost", "/{*slug}");
+        options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
+    });
+
 
 var app = builder.Build();
 

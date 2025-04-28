@@ -12,5 +12,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
 ENV ASPNETCORE_URLS=http://*:3001
 WORKDIR /app
 COPY --from=build /app/publish .
+COPY ./manifest.json /manifest.json
 EXPOSE 3001
 ENTRYPOINT ["dotnet", "RazorPageLeifExample.dll"]
